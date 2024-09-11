@@ -44,10 +44,19 @@ PreCommit:
     description: 'Linting Markdown files'
 
 CommitMsg:
-  ConventionalCommit:
+  MessageFormat:
     enabled: true
     description: 'Check if commit message follows Conventional Commits'
-    pattern: '^(feat|fix|docs|style|refactor|perf|test|chore)(\([a-z\-]+\))?: .{1,}$'
-    message: 'Commit message does not follow the Conventional Commits standard. Format should be: <type>([optional scope]): <description>'
-    required: true
-    quiet: false
+    pattern: '^(feat|fix|docs|style|refactor|perf|test|chore)(\([a-z\-]+\))?:\s.+$'
+    expected_pattern_message: >
+      Commit message does not follow the Conventional Commits standard.
+      Format should be: <type>([optional scope]): <description>
+
+      Valid types: feat, fix, docs, style, refactor, perf, test, chore
+
+      Examples:
+      feat: add new feature
+      fix(auth): resolve login issue
+      docs: update README
+    sample_message: 'feat(ui): add new button component'
+    on_warn: fail
