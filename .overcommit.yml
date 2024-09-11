@@ -31,6 +31,7 @@
 #
 #  IndexTags:
 #    enabled: true # Generate a tags file with `ctags` each time HEAD changes
+
 PreCommit:
   MixTest:
     enabled: true
@@ -42,3 +43,11 @@ PreCommit:
     required_executable: 'markdownlint'
     description: 'Linting Markdown files'
 
+CommitMsg:
+  ConventionalCommit:
+    enabled: true
+    description: 'Check if commit message follows Conventional Commits'
+    pattern: '^(feat|fix|docs|style|refactor|perf|test|chore)(\([a-z\-]+\))?: .{1,}$'
+    message: 'Commit message does not follow the Conventional Commits standard. Format should be: <type>([optional scope]): <description>'
+    required: true
+    quiet: false
